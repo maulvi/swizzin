@@ -25,7 +25,7 @@ fi
 distribution=$(lsb_release -is)
 version=$(lsb_release -cs)
 username=$(cut -d: -f1 < /root/.master.info)
-jackett=$(curl -s https://api.github.com/repos/Jackett/Jackett/releases/latest | grep AMDx64 | grep browser_download_url | cut -d \" -f4)
+jackett=$(curl -s https://api.github.com/repos/Jackett/Jackett/releases/latest | grep ARM64 | grep browser_download_url | cut -d \" -f4)
 #jackettver=$(wget -q https://github.com/Jackett/Jackett/releases/latest -O - | grep -E \/tag\/ | grep -v repository | awk -F "[><]" '{print $3}')
 password=$(cut -d: -f2 < /root/.master.info)
 
@@ -34,8 +34,8 @@ echo "Installing Jackett ... " >>"${OUTTO}" 2>&1;
 
 cd /home/$username
 wget -q $jackett
-tar -xvzf Jackett.Binaries.LinuxAMDx64.tar.gz > /dev/null 2>&1
-rm -f Jackett.Binaries.LinuxAMDx64.tar.gz
+tar -xvzf Jackett.Binaries.LinuxARM64.tar.gz > /dev/null 2>&1
+rm -f Jackett.Binaries.LinuxARM64.tar.gz
 chown ${username}.${username} -R Jackett
 
 cat > /etc/systemd/system/jackett@.service <<JAK
